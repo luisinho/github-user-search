@@ -1,9 +1,13 @@
 import React from 'react';
 import './styles.scss';
 
-const Button = () => (
+type Props = {
+    textBtn: string;
+}
+
+const Button = ({ textBtn }: Props) => (
     <button className="btn-rectangle btn-content">
-        Começar
+        { textBtn}
     </button>
 );
 
