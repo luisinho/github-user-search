@@ -1,33 +1,45 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../../core/components/Button';
-import { PerfilGit } from '../../core/types/PerfilGit';
-import { makeRequest } from '../../core/utils/request';
-import SearchResult from './SearchResult';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Button from 'core/components/Button';
+import ResultSearch from './components/ResultSearch';
 import './styles.scss';
 
-type FormsState = {
+type FormField = {
+    login: string;
+}
+
+type SearchData = {
     login: string;
 }
 
 const Search = () => {
 
-    const [formData, setFormData] = useState<FormsState>({
+    const [formField, setFormField] = useState<FormField>({
         login: ''
     });
 
-    const [perfilGit, setPerfilGit] = useState<PerfilGit>();
+    const [searchData, setSearchData] = useState<SearchData>({
+        login: ''
+    });
+
+    const [isResult, setIsResult] = useState(false);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
         event.preventDefault();
-        postRequest();
-    }
 
-    const postRequest = () => {
-
-        makeRequest({ url: `/users/${formData.login}` })
-            .then(response => setPerfilGit(response.data))
-            .finally(() => setFormData({ login: '' }));
+        if (formField.login !== '') {
+            setSearchData({ login: formField.login });
+            setFormField({ login: '' });
+            setIsResult(true);
+        } else {
+            toast.info('O campo Usuário Github é obrigatório para realizar a pesquisa.', {
+                className: 'toast-notification',
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
     }
 
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +47,7 @@ const Search = () => {
         const name = event.target.name;
         const value = event.target.value;
 
-        setFormData(data => ({ ...data, [name]: value }));
+        setFormField(data => ({ ...data, [name]: value }));
     }
 
     return (
@@ -47,10 +59,10 @@ const Search = () => {
                 <form onSubmit={handleSubmit}>
                     <input type="text"
                         id="login"
-                        value={formData.login}
+                        value={formField.login}
                         name="login"
                         onChange={handleOnChange}
-                        placeholder="Login perfil"
+                        placeholder="Usuário Github"
                         className="search-input"
                     />
                     <div className="search-button">
@@ -62,7 +74,9 @@ const Search = () => {
                 </form>
             </div>
 
-            { perfilGit && (<SearchResult perfil={perfilGit} />)}
+            <ToastContainer />
+
+            { isResult && (<ResultSearch login={searchData.login} />)}
 
         </div>
     );

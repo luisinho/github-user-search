@@ -6,7 +6,6 @@ const Header = () => (
         <h3 className="header-text-title">
             Bootcamp DevSuperior
         </h3>
-
     </header>
 );
 

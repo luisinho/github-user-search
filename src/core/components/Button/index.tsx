@@ -3,10 +3,11 @@ import './styles.scss';
 
 type Props = {
     textBtn: string;
+    onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
-const Button = ({ textBtn }: Props) => (
-    <button className="btn-rectangle btn-content">
+const Button = ({ textBtn, onClick }: Props) => (
+    <button className="btn-rectangle btn-content" onClick={onClick}>
         { textBtn}
     </button>
 );

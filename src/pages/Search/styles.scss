@@ -1,5 +1,5 @@
 .search-container {
-    margin: 65px 90px 0 90px;
+    margin: 40px 90px 0 90px;
     padding: 65px 500px 0px 95px;
     height: 250px;
     background: #E6F7FF;
@@ -9,8 +9,9 @@
 .search-text-title {
     flex: 1;
     height: 45px;
+    font-family: Roboto;
     font-style: normal;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 38px;
     line-height: 46px;
     color: #262626;
@@ -25,6 +26,11 @@
     border-radius: 4px;
     margin-top: 12px;
     margin-bottom: 24px;
+}
+
+.toast-notification {
+    margin-top: 55px;
+    width: 500px;
 }
 
 .search-button {

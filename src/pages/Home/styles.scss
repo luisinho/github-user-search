@@ -5,6 +5,7 @@
 }
 
 .home-text-title {
+    font-family: Roboto;
     font-weight: bold;
     font-size: 48px;
     line-height: 64px;
@@ -15,10 +16,16 @@
 }
 
 .home-text-sub-title {
+    font-family: Roboto;
+    font-style: normal;
     font-weight: normal;
     font-size: 20px;
     line-height: 36px;
     color: #5A6774;
+}
+
+.label-email {
+    color: #1890FF;
 }
 
 .home-btn-comecar {
